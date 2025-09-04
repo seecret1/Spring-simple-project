@@ -53,7 +53,7 @@ public class ReservationController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Reservation> updateReservation(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @RequestBody Reservation reservationToUpdate
     ) {
         log.info("Called updateReservation id={}, reservationToUpdate = {}",
@@ -64,7 +64,7 @@ public class ReservationController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReservation(
-            Long id
+            @PathVariable("id") Long id
     ) {
         log.info("Called deleteReservation id={}", id);
         try {
@@ -79,7 +79,7 @@ public class ReservationController {
     public ResponseEntity<Reservation> approveReservation(
             @PathVariable("id") Long id
     ) {
-        log.info("Called approceReservation: id={}", id);
+        log.info("Called approveReservation: id={}", id);
         var reservation = reservationService.approveReservation(id);
         return ResponseEntity.ok(reservation);
     }
